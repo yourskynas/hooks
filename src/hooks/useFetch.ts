@@ -1,7 +1,13 @@
 import { useEffect, useState } from "react";
 
-export const useFetch = (url) => {
-    const [state, setState] = useState({
+interface FetchState<T> {
+    data: T | null;
+    loading: boolean;
+    error: Error | null;
+}
+
+export const useFetch = <T>(url: string) => {
+    const [state, setState] = useState<FetchState<T>>({
         data: null,
         loading: true,
         error: null
